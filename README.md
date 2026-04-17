@@ -136,13 +136,30 @@ http://127.0.0.1:8787
 
 模式說明：
 
-- 未設定 `OPENAI_API_KEY`：檢索模式（會列出 wiki 相關來源）。
-- 已設定 `OPENAI_API_KEY`：AI 回答模式（以檢索到的 wiki 內容生成答案）。
+- `LLM_MODE=retrieval`：純檢索模式。
+- `LLM_MODE=openai`：使用 OpenAI Responses API。
+- `LLM_MODE=openai_compatible`：使用 OpenAI 相容 API（可接 Ollama）。
+- `LLM_MODE=auto`：自動判斷（有 OpenAI Key 則用 OpenAI；否則若有自訂 `LLM_BASE_URL` 則走相容 API）。
 
-設定 API Key（PowerShell）：
+### 使用 OpenAI
 
 ```powershell
+$env:LLM_MODE = "openai"
 $env:OPENAI_API_KEY = "你的金鑰"
+$env:LLM_MODEL = "gpt-5.4-mini"
+python dashboard/server.py
+```
+
+### 使用 Ollama（OpenAI 相容）
+
+先確認本機 Ollama 已啟動且模型可用（例如 `qwen2.5:7b`）。
+
+```powershell
+$env:LLM_MODE = "openai_compatible"
+$env:LLM_BASE_URL = "http://127.0.0.1:11434/v1"
+$env:LLM_MODEL = "qwen2.5:7b"
+# Ollama 通常不需要金鑰，留空即可
+$env:LLM_API_KEY = ""
 python dashboard/server.py
 ```
 

@@ -26,3 +26,7 @@ node_modules/
 # Temp
 tmp/
 temp/
+
+# Secrets
+.env
+.env.*
