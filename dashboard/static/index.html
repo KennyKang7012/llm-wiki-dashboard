@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LLM Wiki QA Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="bg-shape shape-a"></div>
+  <div class="bg-shape shape-b"></div>
+
+  <main class="app">
+    <header class="header">
+      <h1>LLM Wiki QA Dashboard</h1>
+      <p>以 `wiki/` 內容為基礎的問答介面</p>
+      <div id="health" class="pill">連線中...</div>
+    </header>
+
+    <section class="card ask-card">
+      <label for="question">輸入問題</label>
+      <textarea id="question" placeholder="例如：請比較金融防詐與可信任 AI 治理的落地優先順序"></textarea>
+      <div class="actions">
+        <button id="askBtn">送出問題</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>回答</h2>
+      <pre id="answer">尚未提問</pre>
+    </section>
+
+    <section class="card">
+      <h2>參考來源</h2>
+      <ul id="sources"></ul>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

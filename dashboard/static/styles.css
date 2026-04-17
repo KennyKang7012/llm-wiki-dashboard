@@ -1,0 +1,152 @@
+﻿:root {
+  --bg: #f4f8ff;
+  --surface: #ffffff;
+  --text: #12212f;
+  --muted: #4f6478;
+  --accent: #006d77;
+  --accent-2: #e29578;
+  --line: #d8e2ec;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 700px at 20% -10%, #cde9f2 10%, transparent 70%),
+              radial-gradient(900px 600px at 95% 10%, #ffe2d5 8%, transparent 70%),
+              var(--bg);
+  min-height: 100vh;
+}
+
+.bg-shape {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: .5;
+  z-index: 0;
+}
+.shape-a {
+  width: 280px;
+  height: 280px;
+  background: #79c4b8;
+  top: 70%;
+  left: -80px;
+}
+.shape-b {
+  width: 220px;
+  height: 220px;
+  background: #ffb89b;
+  top: 8%;
+  right: -50px;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 800;
+}
+
+.header p {
+  margin: 6px 0 10px;
+  color: var(--muted);
+}
+
+.pill {
+  display: inline-block;
+  background: #ecf7f5;
+  border: 1px solid #b9ddd8;
+  color: #154a50;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: .86rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 8px 24px rgba(15, 35, 52, 0.06);
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid #bfd3e1;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  resize: vertical;
+  background: #fbfdff;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  background: linear-gradient(135deg, var(--accent), #008da1);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: .95rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+pre {
+  white-space: pre-wrap;
+  margin: 0;
+  line-height: 1.6;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .app {
+    padding: 14px;
+  }
+
+  .card {
+    border-radius: 12px;
+  }
+
+  textarea {
+    min-height: 140px;
+  }
+}

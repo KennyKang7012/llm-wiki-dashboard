@@ -113,3 +113,36 @@
 - 架構想法來源：`llm-wiki.md`
 - 系統入口：`wiki/index.md`
 
+---
+
+## AI Dashboard（QA 問答）
+
+已提供本機版 Dashboard：
+
+- 後端：`dashboard/server.py`
+- 前端：`dashboard/static/`
+
+啟動方式：
+
+```powershell
+python dashboard/server.py
+```
+
+開啟瀏覽器：
+
+```text
+http://127.0.0.1:8787
+```
+
+模式說明：
+
+- 未設定 `OPENAI_API_KEY`：檢索模式（會列出 wiki 相關來源）。
+- 已設定 `OPENAI_API_KEY`：AI 回答模式（以檢索到的 wiki 內容生成答案）。
+
+設定 API Key（PowerShell）：
+
+```powershell
+$env:OPENAI_API_KEY = "你的金鑰"
+python dashboard/server.py
+```
+

@@ -20,11 +20,8 @@ __pycache__/
 # Node cache (if tooling is added later)
 node_modules/
 
-# Obsidian local workspace state
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.obsidian/cache/
-.obsidian/plugins/*/data.json
+# Obsidian vault settings (ignore all local state/config)
+.obsidian/
 
 # Temp
 tmp/
