@@ -38,6 +38,7 @@ async function askQuestion() {
   askBtn.disabled = true;
   askBtn.textContent = '處理中...';
   answerEl.textContent = '正在分析...';
+  renderSources([]);
 
   try {
     const res = await fetch('/api/ask', {

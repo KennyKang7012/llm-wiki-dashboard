@@ -30,3 +30,4 @@ temp/
 # Secrets
 .env
 .env.*
+!.env.example

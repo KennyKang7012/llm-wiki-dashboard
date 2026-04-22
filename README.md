@@ -134,6 +134,23 @@ python dashboard/server.py
 http://127.0.0.1:8787
 ```
 
+### 建議先用 `.env.example`
+
+專案根目錄已提供 `.env.example`，可先複製成 `.env`：
+
+```bash
+cp .env.example .env
+```
+
+`dashboard/server.py` 會自動載入根目錄 `.env`，常用欄位如下：
+
+- `LLM_MODE`：`auto` / `retrieval` / `openai` / `openai_compatible`
+- `LLM_MODEL`：模型名稱（如 `gpt-5.4-mini`、`qwen2.5:7b`、`meta/llama-3.1-70b-instruct`）
+- `OPENAI_API_KEY`：OpenAI 金鑰（OpenAI 模式）
+- `LLM_BASE_URL`：OpenAI 相容端點（如 Ollama / NVIDIA NIM）
+- `LLM_API_KEY`：OpenAI 相容端點金鑰
+- `OPENAI_TIMEOUT_SECONDS`：API timeout（預設 `60`）
+
 模式說明：
 
 - `LLM_MODE=retrieval`：純檢索模式。
@@ -163,3 +180,26 @@ $env:LLM_API_KEY = ""
 python dashboard/server.py
 ```
 
+### 使用 NVIDIA NIM（OpenAI 相容）
+
+```powershell
+$env:LLM_MODE = "openai_compatible"
+$env:LLM_BASE_URL = "https://integrate.api.nvidia.com/v1"
+$env:LLM_MODEL = "meta/llama-3.1-70b-instruct"
+$env:LLM_API_KEY = "nvapi-xxxxxxxxxxxxxxxx"
+python dashboard/server.py
+```
+
+---
+
+## Dashboard 常見問題（建議補齊）
+
+1. Dashboard 檢索來源是 `wiki/*.md`，不是 `raw/sources/*`。  
+   若原始 PDF 有資料，但 wiki 頁沒寫進去，問答仍可能答不出來。
+2. 伺服器啟動時會一次載入 wiki 文件。  
+   修改 `wiki/` 後，需重啟 `python dashboard/server.py` 才會反映。
+3. 若要提升命中率，建議在來源頁明確保留：
+   - 關鍵數字（日期、件數、金額）
+   - 專有名詞與別名（中英混寫）
+   - 主要清單項（分類、類型、步驟）
+4. `LLM_MODE=retrieval` 為純檢索，不會呼叫外部模型；適合先驗證 wiki 內容是否完整。
