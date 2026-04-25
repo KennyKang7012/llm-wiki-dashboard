@@ -1,0 +1,4 @@
+interface:
+  display_name: "Technical Translator"
+  short_description: "Translate English/Japanese technical content into Traditional Chinese for Taiwan engineers."
+  default_prompt: "Translate the provided English or Japanese technical text into Traditional Chinese, keeping proper technical terms in original form and preserving faithful meaning with natural flow."
