@@ -1,0 +1,4 @@
+interface:
+  display_name: "Local Git Commit"
+  short_description: "Create clean local Git commits safely without pushing."
+  default_prompt: "Review local changes, stage only task-relevant files, write a clear commit message in Traditional Chinese, and create a local commit without pushing."

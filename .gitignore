@@ -30,7 +30,3 @@ temp/
 # Secrets
 .env
 .env.*
-
-# User-specific directories
-Clippings/
-copilot/
