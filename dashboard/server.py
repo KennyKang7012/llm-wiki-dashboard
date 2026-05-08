@@ -194,38 +194,6 @@ def _http_post_json(url: str, payload: dict, timeout_sec: int, api_key: str = ""
     return json.loads(body)
 
 
-def call_openai_responses(prompt: str) -> str:
-    api_key = LLM_API_KEY or OPENAI_API_KEY
-    payload = {
-        "model": LLM_MODEL,
-        "input": [
-            {
-                "role": "user",
-                "content": [{"type": "input_text", "text": prompt}],
-            }
-        ],
-    }
-
-    data = _http_post_json(
-        "https://api.openai.com/v1/responses",
-        payload,
-        timeout_sec=OPENAI_TIMEOUT,
-        api_key=api_key,
-    )
-
-    output_text = data.get("output_text", "").strip()
-    if output_text:
-        return output_text
-
-    parts = []
-    for item in data.get("output", []):
-        for content in item.get("content", []):
-            text = content.get("text")
-            if text:
-                parts.append(text)
-    return "\n".join(parts).strip()
-
-
 def call_openai_compatible_chat(prompt: str) -> str:
     payload = {
         "model": LLM_MODEL,
@@ -266,9 +234,7 @@ def call_llm(question: str, docs: List[Doc]) -> str:
     prompt = build_prompt(question, docs)
     mode = resolved_llm_mode()
 
-    if mode == "openai":
-        return call_openai_responses(prompt)
-    if mode == "openai_compatible":
+    if mode in ("openai", "openai_compatible"):
         return call_openai_compatible_chat(prompt)
 
     return ""
@@ -346,6 +312,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
             return self._json({"mode": resolved_llm_mode(), "answer": answer, "sources": sources})
         except error.HTTPError as exc:
             detail = exc.read().decode("utf-8", errors="ignore")
+            print(f"[HTTP {exc.code}] {detail[:500]}", file=__import__('sys').stderr)
             fallback = retrieval_only_answer(question, docs)
             return self._json(
                 {

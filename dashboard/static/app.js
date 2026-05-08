@@ -54,7 +54,8 @@ async function askQuestion() {
     }
 
     const warning = data.warning ? `\n\n[警告] ${data.warning}` : '';
-    answerEl.textContent = (data.answer || '無回答') + warning;
+    const detail = data.detail ? `\n詳細資訊: ${data.detail}` : '';
+    answerEl.textContent = (data.answer || '無回答') + warning + detail;
     renderSources(data.sources || []);
   } catch (err) {
     answerEl.textContent = `請求失敗：${err}`;

@@ -1,4 +1,4 @@
-﻿# sources
+# sources
 
 把原始來源放在這裡（例如：文章 markdown、PDF、逐字稿）。
 
